@@ -3,9 +3,11 @@ const shapes = (grid) => {
   const adyacents = new Set();
   for (r = 0; r < grid.length; r += 1) {
     for (c = 0; c < grid[0].length; c += 1) {
-      const neig = exploreForNeibor(grid, r, c, visited);
-      if (neig) {
-        console.log(neig, r, c);
+      if (grid[r][c] == 1) {
+        const neig = exploreForNeibor(grid, r, c, visited);
+        if (neig) {
+          console.log(neig, r, c);
+        }
       }
     }
   }
@@ -17,8 +19,6 @@ const exploreForNeibor = (grid, r, c, visited, direc = '') => {
   rowInbounds = 0 <= r && r < grid.length;
   colInbounds = 0 <= c && c < grid[0].length;
   if (!rowInbounds || !colInbounds) return false;
-
-  if (grid[r][c] === 0) return false;
 
   pos = `(${r},${c})`;
   if (visited.has(pos)) return false;
